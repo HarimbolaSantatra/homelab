@@ -2,4 +2,8 @@
 
 ## Run a simple web server
 
-    docker run --name some-server -v webserver/:/usr/share/nginx/html:ro -d nginx
+    docker build -f webserver.Dockerfile -t harimbolasantatra/some-server .
+
+To run it on external container (w/o gns3):
+
+    docker run --name some-server -d harimbolasantatra/some-server
