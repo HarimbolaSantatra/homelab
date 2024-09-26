@@ -1,5 +1,5 @@
 # MY HOMELAB
-## Run a simple web server
+## Simple web server for GNS3
 
     docker build -f webserver.Dockerfile -t harimbolasantatra/some-server .
 
