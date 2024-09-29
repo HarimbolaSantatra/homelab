@@ -8,11 +8,18 @@ provider "lxd" {
     scheme  = "https"
     password = "test123"
   }
+
 }
 
-# Instance for demonstration. It uses remote "test".
-resource "lxd_instance" "self" {
-  name   = "self"
-  image  = "images:alpine/edge"
-  remote = "test"
+resource "lxd_instance" "instance1" {
+  name  = "instance1"
+  image = "ubuntu-daily:22.04"
+
+  config = {
+    "boot.autostart" = true
+  }
+
+  limits = {
+    cpu = 2
+  }
 }
