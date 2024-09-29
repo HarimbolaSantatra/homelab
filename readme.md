@@ -1,4 +1,11 @@
 # MY HOMELAB
+
+> [!IMPORTANT]
+`.tfvars`, `.tfstate` and `.tfstate.` must be ignored in production
+
+## Kubernetes
+*wip* (branch `k8s`)
+
 ## Simple web server for GNS3
 
     docker build -f webserver.Dockerfile -t harimbolasantatra/some-server .
