@@ -7,25 +7,13 @@ terraform {
   }
 }
 
-provider "docker" {
-  host = "unix:///var/run/docker.sock"
+provider "lxd" {
 }
 
-resource "docker_image" "mariadb" {
-  name = "mariadb:lts"
-}
-
-resource "docker_container" "master" {
-  image = docker_image.mariadb.image_id
-  name  = "master"
-}
-
-resource "docker_container" "slave1" {
-  image = docker_image.mariadb.image_id
+resource "lxd_instance" "slave1" {
   name  = "slave1"
-}
-
-resource "docker_container" "slave2" {
-  image = docker_image.mariadb.image_id
-  name  = "slave2"
+  ubuntu = "ubuntu-daily:22.04"
+  limits = {
+    cpu = 1
+  }
 }

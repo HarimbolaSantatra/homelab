@@ -1,0 +1,3 @@
+binlog_do_db = ostiedb
+replicate_rewrite_db=testdb1->testdb
+replicate_do_db=testdb

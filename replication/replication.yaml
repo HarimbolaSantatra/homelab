@@ -1,0 +1,27 @@
+- name: Setup master
+  hosts: master
+  become: true
+  vars:
+    master_conf: 50-server.cnf
+    mariadb_conf_dir: /etc/mysql/mariadb.conf.d
+  tasks:
+    - name: Copy master configuration
+      ansible.builtin.copy:
+        src: "{{ master_conf }}"
+        dest: "{{ mariadb_conf_dir }}/"
+        owner: root
+        mode: '644'
+
+- name: Setup master
+  hosts: slave
+  become: true
+  vars:
+    slave_conf: 00-slave.cnf
+    mariadb_conf_dir: /etc/mysql/mariadb.conf.d
+  tasks:
+    - name: Copy slave configuration
+      ansible.builtin.copy:
+        src: "{{ slave_conf }}"
+        dest: "{{ mariadb_conf_dir }}/"
+        owner: root
+        mode: '644'

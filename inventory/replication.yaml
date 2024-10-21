@@ -1,0 +1,7 @@
+replication:
+  hosts:
+    master:
+      ansible_host: 127.0.0.1
+      connection: local
+    slave:
+      ansible_host: 10.210.242.155
