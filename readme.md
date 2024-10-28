@@ -26,4 +26,5 @@ docker build -f ssh.Dockerfile -t sshd-image:latest .
 docker run --rm -t -d --name sshd-image sshd-image:latest
 ```
 
-SSH with password `insecure_password`: `ssh santatra@<IP>`
+To ssh into the container, use the [ipterm](https://gns3.com/marketplace/appliances/ipterm) appliance.
+SSH password is `insecure_password`.
