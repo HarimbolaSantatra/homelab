@@ -16,3 +16,14 @@ To run it on external container (w/o gns3):
 
 ## Database replication
 *wip* (branch `replication`)
+
+## SSH Container
+[Dockerfile](ssh.Dockerfile) is from [this Circle CI blog post](https://circleci.com/blog/ssh-into-docker-container/).
+
+Build and run the image:
+```
+docker build -f ssh.Dockerfile -t sshd-image:latest .
+docker run --rm -t -d --name sshd-image sshd-image:latest
+```
+
+SSH with password `insecure_password`: `ssh santatra@<IP>`
