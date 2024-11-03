@@ -22,8 +22,8 @@ To run it on external container (w/o gns3):
 
 Build and run the image:
 ```
-docker build -f ssh.Dockerfile -t sshd-image:latest .
-docker run --rm -t -d --name sshd-image sshd-image:latest
+docker build -f sshd.Dockerfile -t harimbolasantatra/sshd-image:latest .
+docker run --rm -t -d --name sshd sshd-image:latest
 ```
 
 To ssh into the container, use the [ipterm](https://gns3.com/marketplace/appliances/ipterm) appliance.
