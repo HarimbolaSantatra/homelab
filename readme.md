@@ -18,7 +18,7 @@ To run it on external container (w/o gns3):
 *wip* (branch `replication`)
 
 ## SSH Container
-[Dockerfile](ssh.Dockerfile) is from [this Circle CI blog post](https://circleci.com/blog/ssh-into-docker-container/).
+[Dockerfile for SSH server](ssh.Dockerfile) is from [this Circle CI blog post](https://circleci.com/blog/ssh-into-docker-container/).
 
 Build and run the image:
 ```
