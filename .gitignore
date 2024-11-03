@@ -41,3 +41,4 @@ terraform.rc
 *.vim
 *.swp
 *.swo
+todo/
