@@ -4,7 +4,16 @@
 `.tfvars`, `.tfstate` and `.tfstate.` must be ignored in production
 
 ## Kubernetes
-*wip* (branch `k8s`)
+
+# Kubernetes Labs
+
+The `main.tf` provision the local machine with 2 VM:
+
+| VM | Purpose | IP | RAM 
+| --- | --- | --- | ---
+| controlplane | Control plane | (host) | (host)
+| node1 | Workter node | | 1GB
+| loadbalancer | LoadBalancer | 512
 
 ## Simple web server for GNS3
 
