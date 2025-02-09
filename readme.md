@@ -5,8 +5,6 @@
 
 ## Kubernetes
 
-# Kubernetes Labs
-
 The `main.tf` provision the local machine with 2 VM:
 
 | VM | Purpose | IP | RAM 
