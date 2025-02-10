@@ -3,6 +3,7 @@ kind: Pod
 metadata:
   name: hello-pod
   labels:
+    app: hello
     zone: prod
     version: v1
 spec:
