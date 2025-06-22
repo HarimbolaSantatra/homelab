@@ -3,6 +3,11 @@
 > [!IMPORTANT]
 `.tfvars`, `.tfstate` and `.tfstate.` must be ignored in production
 
+Directory layout:
+- `kubernetes`
+- `replication`: database replication
+- `webserver`: html files for testing a webserver
+
 ## Kubernetes
 
 The `main.tf` provision the local machine with 2 VM:
