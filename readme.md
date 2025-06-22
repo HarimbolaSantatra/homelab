@@ -3,7 +3,18 @@
 > [!IMPORTANT]
 `.tfvars`, `.tfstate` and `.tfstate.` must be ignored in production
 
-## Kubernetes
+Directory layout:
+1. `esstack`: elastic stack and monitoring with grafana 
+2. `kubernetes`
+3. `replication`: database replication
+4. `webserver`: html files for testing a webserver
+
+## 1. ELASTIC STACK
+The goal is to monitor a file on `/var/`
+
+##
+
+## 2. Kubernetes
 
 The `main.tf` provision the local machine with 2 VM:
 
@@ -21,7 +32,7 @@ To run it on external container (w/o gns3):
 
     docker run --rm --name some-server -d harimbolasantatra/some-server
 
-## Database replication
+## 3. Database replication
 *wip* (branch `replication`)
 
 ## SSH Container
