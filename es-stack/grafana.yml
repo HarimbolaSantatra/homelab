@@ -1,0 +1,19 @@
+- name: Configure Elastic Search
+  hosts: guest
+  remote_user: santatra
+  become: true
+  tasks:
+
+    - name: Ensure the grafana is running
+      service:
+        name: grafana-server
+        state: started
+
+    - name: Copy configuration files
+      copy:
+        src: conf/grafana.ini
+        dest: /etc/grafana/grafana.ini
+        owner: root
+        group: grafana
+        mode: '0640'
+

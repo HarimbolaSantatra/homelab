@@ -1,0 +1,26 @@
+- name: Configure Elastic Search
+  hosts: guest
+  remote_user: santatra
+  become: true
+  tasks:
+
+    - name: Ensure the httpd service is running
+      service:
+        name: elasticsearch
+        state: started
+
+    - name: Copy configuration files
+      copy:
+        src: conf/elasticsearch.yml
+        dest: /etc/elasticsearch/elasticsearch.yml
+        owner: root
+        group: elasticsearch
+        mode: '0660'
+
+    - name: Copy file to be monitored
+      copy:
+        src: data.csv
+        dest: /var/opt/data.csv
+        owner: root
+        group: elasticsearch
+        mode: '0664'
