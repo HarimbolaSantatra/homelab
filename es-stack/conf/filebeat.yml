@@ -132,19 +132,24 @@ output.elasticsearch:
 processors:
 - decode_csv_fields:
     fields:
-      message: /var/opt/data.csv
+      message: message
     separator: ","
     ignore_missing: false
     overwrite_keys: true
     trim_leading_space: false
     fail_on_error: true
+# Remove noise
+- drop_fields:
+    fields: [ "log", "host", "ecs", "input", "agent" ]
 - extract_array:
     field: message
     mappings:
-      mydata.date: 0
-      mydata.appname: 1
-      mydata.key: 2
-      mydata.value: 3
+      date: 0
+      appname: 1
+      key: 2
+      value: 3
+- drop_fields:
+    fields: [ "message" ]
 
 # ================================== Logging ===================================
 
