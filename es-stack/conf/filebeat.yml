@@ -16,7 +16,7 @@ filebeat.inputs:
 
 - type: filestream
   enabled: true
-  id: filebeat-test-0
+  id: filebeat-test-1
   paths:
     - /var/opt/data.csv
 
@@ -123,7 +123,7 @@ output.elasticsearch:
   username: "elastic"
   password: "elastic"
 
-  index: "filebeat-test-0"
+  index: "filebeat-test-1"
 
   # Certificate
   ssl.certificate_authorities: "/etc/elasticsearch/certs/http_ca.crt"
