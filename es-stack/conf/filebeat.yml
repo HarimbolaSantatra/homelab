@@ -18,7 +18,7 @@ filebeat.inputs:
   enabled: true
   id: filebeat-test-0
   paths:
-    - /root/data.csv
+    - /var/opt/data.csv
 
 # ============================== Filebeat modules ==============================
 
@@ -132,7 +132,7 @@ output.elasticsearch:
 processors:
 - decode_csv_fields:
     fields:
-      message: /root/data.csv
+      message: /var/opt/data.csv
     separator: ","
     ignore_missing: false
     overwrite_keys: true
