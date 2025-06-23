@@ -14,64 +14,11 @@
 
 filebeat.inputs:
 
-# filestream is an input for collecting log messages from files.
 - type: filestream
-
-  # Unique ID among all inputs, an ID is required.
-  id: my-filestream-id
-
-  # Change to true to enable this input configuration.
-  enabled: false
-
-  # Paths that should be crawled and fetched. Glob based paths.
+  enabled: true
+  id: filebeat-test-0
   paths:
-    - /var/log/*.log
-    #- c:\programdata\elasticsearch\logs\*
-
-  # Exclude lines. A list of regular expressions to match. It drops the lines that are
-  # matching any regular expression from the list.
-  # Line filtering happens after the parsers pipeline. If you would like to filter lines
-  # before parsers, use include_message parser.
-  #exclude_lines: ['^DBG']
-
-  # Include lines. A list of regular expressions to match. It exports the lines that are
-  # matching any regular expression from the list.
-  # Line filtering happens after the parsers pipeline. If you would like to filter lines
-  # before parsers, use include_message parser.
-  #include_lines: ['^ERR', '^WARN']
-
-  # Exclude files. A list of regular expressions to match. Filebeat drops the files that
-  # are matching any regular expression from the list. By default, no files are dropped.
-  #prospector.scanner.exclude_files: ['.gz$']
-
-  # Optional additional fields. These fields can be freely picked
-  # to add additional information to the crawled log files for filtering
-  #fields:
-  #  level: debug
-  #  review: 1
-
-# journald is an input for collecting logs from Journald
-#- type: journald
-
-  # Unique ID among all inputs, if the ID changes, all entries
-  # will be re-ingested
-  #id: my-journald-id
-
-  # The position to start reading from the journal, valid options are:
-  #  - head: Starts reading at the beginning of the journal.
-  #  - tail: Starts reading at the end of the journal.
-  #    This means that no events will be sent until a new message is written.
-  #  - since: Use also the `since` option to determine when to start reading from.
-  #seek: head
-
-  # A time offset from the current time to start reading from.
-  # To use since, seek option must be set to since.
-  #since: -24h
-
-  # Collect events from the service and messages about the service,
-  # including coredumps.
-  #units:
-    #- docker.service
+    - /root/data.csv
 
 # ============================== Filebeat modules ==============================
 
@@ -91,6 +38,9 @@ setup.template.settings:
   index.number_of_shards: 1
   #index.codec: best_compression
   #_source.enabled: false
+  #
+setup.template.name: "filebeat-test"
+setup.template.pattern: "filebeat-test"
 
 
 # ================================== General ===================================
@@ -130,7 +80,9 @@ setup.kibana:
   # Scheme and port can be left out and will be set to the default (http and 5601)
   # In case you specify and additional path, the scheme is required: http://localhost:5601/path
   # IPv6 addresses should always be defined as: https://[2001:db8::1]:5601
-  #host: "localhost:5601"
+  host: "localhost:5601"
+  username: "elastic"
+  password: "elastic"
 
   # Kibana Space ID
   # ID of the Kibana Space into which the dashboards should be loaded. By default,
@@ -157,42 +109,42 @@ setup.kibana:
 # ---------------------------- Elasticsearch Output ----------------------------
 output.elasticsearch:
   # Array of hosts to connect to.
-  hosts: ["192.168.3.1:9200"]
+  hosts: ["https://localhost:9200"]
 
   # Performance preset - one of "balanced", "throughput", "scale",
   # "latency", or "custom".
   preset: balanced
 
   # Protocol - either `http` (default) or `https`.
-  #protocol: "https"
+  protocol: "https"
 
   # Authentication credentials - either API key or username/password.
   #api_key: "id:api_key"
-  #username: "elastic"
-  #password: "changeme"
+  username: "elastic"
+  password: "elastic"
 
-# ------------------------------ Logstash Output -------------------------------
-#output.logstash:
-  # The Logstash hosts
-  #hosts: ["localhost:5044"]
+  index: "filebeat-test-0"
 
-  # Optional SSL. By default is off.
-  # List of root certificates for HTTPS server verifications
-  #ssl.certificate_authorities: ["/etc/pki/root/ca.pem"]
-
-  # Certificate for SSL client authentication
-  #ssl.certificate: "/etc/pki/client/cert.pem"
-
-  # Client Certificate Key
-  #ssl.key: "/etc/pki/client/cert.key"
+  # Certificate
+  ssl.certificate_authorities: "/etc/elasticsearch/certs/http_ca.crt"
 
 # ================================= Processors =================================
 processors:
-  - add_host_metadata:
-      when.not.contains.tags: forwarded
-  - add_cloud_metadata: ~
-  - add_docker_metadata: ~
-  - add_kubernetes_metadata: ~
+- decode_csv_fields:
+    fields:
+      message: /root/data.csv
+    separator: ","
+    ignore_missing: false
+    overwrite_keys: true
+    trim_leading_space: false
+    fail_on_error: true
+- extract_array:
+    field: message
+    mappings:
+      mydata.date: 0
+      mydata.appname: 1
+      mydata.key: 2
+      mydata.value: 3
 
 # ================================== Logging ===================================
 
