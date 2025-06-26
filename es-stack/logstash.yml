@@ -12,11 +12,6 @@
         group: santatra
         mode: '0664'
 
-    - name: Run Logstash
-      service:
-        name: logstash
-        state: started
-
     - name: Copy configuration files
       copy:
         src: conf/logstash.yml
@@ -24,3 +19,9 @@
         owner: root
         group: root
         mode: '0644'
+
+    - name: Run Logstash
+      service:
+        name: logstash
+        state: started
+
