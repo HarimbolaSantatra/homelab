@@ -1,5 +1,5 @@
 - name: Configure Elastic Search
-  hosts: guest
+  hosts: es
   remote_user: santatra
   become: true
   tasks:
@@ -16,11 +16,3 @@
         owner: root
         group: elasticsearch
         mode: '0660'
-
-    - name: Copy file to be monitored
-      copy:
-        src: data.csv
-        dest: /var/opt/data.csv
-        owner: root
-        group: elasticsearch
-        mode: '0664'

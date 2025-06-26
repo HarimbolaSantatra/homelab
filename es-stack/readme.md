@@ -2,8 +2,9 @@
 
 Configuration:
 - Elastic Search run on the another host; its name in the ansible inventory ([`es-stack/inventory.yaml`][es-stack/inventory.yaml]) is `es`.
-- Grafana and filebeat can run either on the host or on the guest.
+- Grafana and logstash can run either on the host or on the guest.
     - If you want it to run on the guest, use the yml files playbooks (`es-stack/*.yml`) to configure them.
     - If you want to run them locally, use the flag `--connection=local`
 
-Filebeat is used to monitor a file on `/var/opt/data.csv`
+**Goal**:
+Use Logstash to ingest the file `undertow_log.log` into ES and create a Grafana dashboard.

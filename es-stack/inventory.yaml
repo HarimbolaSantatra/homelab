@@ -1,9 +1,18 @@
 ungrouped:
   hosts:
+
     # the VM host on which elastic search will run
-    guest:
-      ansible_host: 192.168.3.1
+    es:
+      ansible_host: "{{ asus_host }}"
       ansible_port: 22
+
+    agent:
+      ansible_connection: local
+
+    dashboard:
+      # Used for kibana and grafana-server
+      ansible_connection: local
+
   vars:
     ansible_password: !vault |
           $ANSIBLE_VAULT;1.1;AES256
@@ -19,3 +28,5 @@ ungrouped:
           37313364663762333531323631666336643739333164653938313630333232396634343534366664
           3562643964313963330a336538626237626564636364306532653861393131333537326335653563
           3830
+    asus_host: 192.168.3.1     # My Asus laptop ;)
+    vbox_guest: 192.168.56.103 # Virtual Box guest

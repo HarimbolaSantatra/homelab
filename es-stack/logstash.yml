@@ -1,0 +1,26 @@
+- name: Configure Logstash
+  hosts: agent
+  remote_user: santatra
+  become: true
+  tasks:
+
+    - name: Copy file to be monitored
+      copy:
+        src: undertow_log.log
+        dest: /var/opt/undertow_log.log
+        owner: santatra
+        group: santatra
+        mode: '0664'
+
+    - name: Run Logstash
+      service:
+        name: logstash
+        state: started
+
+    - name: Copy configuration files
+      copy:
+        src: conf/logstash.yml
+        dest: /etc/logstash/logstash.yml
+        owner: root
+        group: root
+        mode: '0644'

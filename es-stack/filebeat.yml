@@ -1,0 +1,19 @@
+- name: Configure filebeat
+  hosts: agent
+  remote_user: santatra
+  become: true
+  tasks:
+
+    - name: Ensure the filebeat is running
+      service:
+        name: filebeat
+        state: started
+
+    - name: Copy configuration files
+      copy:
+        src: conf/filebeat.yml
+        dest: /etc/filebeat/filebeat.yml
+        owner: root
+        group: root
+        mode: '0660'
+

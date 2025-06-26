@@ -1,5 +1,5 @@
 - name: Configure Elastic Search
-  hosts: guest
+  hosts: dashboard
   remote_user: santatra
   become: true
   tasks:

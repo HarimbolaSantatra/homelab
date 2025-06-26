@@ -15,7 +15,7 @@
 filebeat.inputs:
 
 - type: filestream
-  enabled: true
+  enabled: false
   id: filebeat-test-1
   paths:
     - /var/opt/data.csv
