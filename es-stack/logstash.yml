@@ -20,8 +20,16 @@
         group: root
         mode: '0644'
 
+    - name: Copy pipeline configuration
+      copy:
+        src: conf/logstash.conf.d/
+        dest: /etc/logstash/conf.d/
+        owner: root
+        group: root
+        mode: '0644'
+
     - name: Run Logstash
       service:
         name: logstash
-        state: started
+        state: restarted
 
