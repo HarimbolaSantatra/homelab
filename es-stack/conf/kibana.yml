@@ -33,8 +33,8 @@ server.name: "santatra-t490"
 # The URLs of the Elasticsearch instances to use for all your queries.
 elasticsearch.hosts: ["https://192.168.3.1:9200"]
 
-#elasticsearch.username: "elastic"
-#elasticsearch.password: "elastic"
+elasticsearch.username: "elastic"
+elasticsearch.password: "elastic"
 
 # Kibana can also authenticate to Elasticsearch via "service account tokens".
 # Service account tokens are Bearer style tokens that replace the traditional username/password based configuration.
