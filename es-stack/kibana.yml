@@ -4,11 +4,6 @@
   become: true
   tasks:
 
-    - name: Ensure the kibana is running
-      service:
-        name: kibana
-        state: started
-
     - name: Copy configuration files
       copy:
         src: conf/kibana.yml
@@ -16,3 +11,8 @@
         owner: root
         group: kibana
         mode: '0660'
+
+    - name: Ensure the kibana is running
+      service:
+        name: kibana
+        state: started
