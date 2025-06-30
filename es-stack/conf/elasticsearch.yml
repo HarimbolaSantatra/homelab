@@ -89,7 +89,7 @@ http.port: 9200
 # Enable security features
 xpack.security.enabled: true
 
-xpack.security.enrollment.enabled: true
+xpack.security.enrollment.enabled: false
 
 # Enable encryption for HTTP API client connections, such as Kibana, Logstash, and Agents
 xpack.security.http.ssl:
