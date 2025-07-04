@@ -20,7 +20,7 @@
 #
 # Use a descriptive name for the node:
 #
-#node.name: node-1
+node.name: node-1
 #
 # Add custom attributes to the node:
 #
@@ -53,12 +53,12 @@ path.logs: /var/log/elasticsearch
 # By default Elasticsearch is only accessible on localhost. Set a different
 # address here to expose this node on the network:
 #
-network.host: 192.168.3.1
+#network.host: 192.168.3.1
 #
 # By default Elasticsearch listens for HTTP traffic on the first free port it
 # finds starting at 9200. Set a specific HTTP port here:
 #
-http.port: 9200
+#http.port: 9200
 #
 # --------------------------------- Discovery ----------------------------------
 #
@@ -66,6 +66,7 @@ http.port: 9200
 # The default list of hosts is ["127.0.0.1", "[::1]"]
 #
 #discovery.seed_hosts: ["host1", "host2"]
+discovery.type: single-node
 #
 # Bootstrap the cluster using an initial set of master-eligible nodes:
 #
@@ -89,11 +90,12 @@ http.port: 9200
 # Enable security features
 xpack.security.enabled: true
 
-xpack.security.enrollment.enabled: false
+xpack.security.enrollment.enabled: true
 
 # Enable encryption for HTTP API client connections, such as Kibana, Logstash, and Agents
 xpack.security.http.ssl:
-  enabled: false
+  enabled: true
+  verification_mode: certificate
   keystore.path: certs/http.p12
 
 # Enable encryption and mutual authentication between cluster nodes
@@ -104,7 +106,7 @@ xpack.security.transport.ssl:
   truststore.path: certs/transport.p12
 # Create a new cluster with the current node only
 # Additional nodes can still join the cluster later
-cluster.initial_master_nodes: ["localhost"]
+# cluster.initial_master_nodes: ["localhost"]
 
 # Allow HTTP API connections from anywhere
 # Connections are encrypted and require user authentication
