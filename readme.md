@@ -47,6 +47,12 @@ To ssh into the container, use the [ipterm](https://gns3.com/marketplace/applian
 SSH password is `insecure_password`.
 
 ## Gitlab
-See
+Use Terraform to install a Gitlab server:
+
+```bash
+terraform init
+```
+
+See:
 - [Gitlab installation guide](https://docs.gitlab.com/install/docker/installation/#install-gitlab-by-using-docker-compose) for full documentation
 - [Docker hub](https://hub.docker.com/r/gitlab/gitlab-ce/) to see available Community and Entreprise version
