@@ -8,6 +8,7 @@ Directory layout:
 2. `kubernetes`
 3. `replication`: database replication
 4. `webserver`: html files for testing a webserver
+5. `gitlab-docker-compose.yml`: docker compose file for installing local gitlab server. 
 
 ## 1. ELASTIC STACK
 See [its README](es-stack/readme.md).
@@ -44,3 +45,8 @@ docker run --rm -t -d --name sshd sshd-image:latest
 
 To ssh into the container, use the [ipterm](https://gns3.com/marketplace/appliances/ipterm) appliance.
 SSH password is `insecure_password`.
+
+## Gitlab
+See
+- [Gitlab installation guide](https://docs.gitlab.com/install/docker/installation/#install-gitlab-by-using-docker-compose) for full documentation
+- [Docker hub](https://hub.docker.com/r/gitlab/gitlab-ce/) to see available Community and Entreprise version
