@@ -1,6 +1,9 @@
 # Local .terraform directories
 **/.terraform/*
 
+*.jar
+*.war
+
 # .tfstate files
 # IT IS RECOMMENDED TO IGNORE THESE IN REAL PRODUCTION ENV
 #*.tfstate
